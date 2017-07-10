@@ -1,0 +1,45 @@
+C:\Users\Bowei>j-- -p "C:\Users\Bowei\Desktop\UMASS\CS 451\workspace\j--\TestDoW
+hile.java"
+<?xml version="1.0" encoding="utf-8"?>
+<JCompilationUnit line="2">
+  <Source fileName="C:\Users\Bowei\Desktop\UMASS\CS 451\workspace\j--\TestDoWhil
+e.java"/>
+  <Imports>
+  </Imports>
+  <TypeDeclarations>
+    <JClassDeclaration line="2" name="TestDoWhile" super="java.lang.Object">
+      <Modifiers>
+      </Modifiers>
+      <ClassBlock>
+      <JMethodDeclaration line="3" name="f" returnType="void">
+        <Modifiers>
+          <Modifier name="public"/>
+        </Modifiers>
+        <FormalParameters>
+        </FormalParameters>
+        <Body>
+          <JBlock line="3">
+            <JDoWhileStatement line="4">
+              <TheStatements>
+                <JBlock line="4">
+                  <JVariableDeclaration>
+                    <Modifiers>
+                    </Modifiers>
+                    <VariableDeclarators>
+                      <JVariableDeclarator line="5" name="i" type="int">
+                      </JVariableDeclarator>
+                    </VariableDeclarators>
+                  </JVariableDeclaration>
+                </JBlock>
+              </TheStatements>
+              <TestExpression>
+                <JLiteralTrue line="6" type=""/>
+              </TestExpression>
+            </JDoWhileStatement>
+          </JBlock>
+        </Body>
+      </JMethodDeclaration>
+      </ClassBlock>
+    </JClassDeclaration>
+  </TypeDeclarations>
+</JCompilationUnit>

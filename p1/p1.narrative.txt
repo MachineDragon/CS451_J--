@@ -1,0 +1,84 @@
+Bowei Li
+CS 451
+Assignment 1
+Narrative file
+
+Assignment 1 is not very hard. It gives us a good view about j-- and eclipse. It
+is my first time to use eclipse and this assignment help me a lot for it. In the
+assignment we are going to implement three operator in j--, divider, remainder,
+and unary plus.
+
+Follow the description from Section 1.5, it is very easy and fast to implement
+the division for j--. First write the test classes in pass, fail, and junit
+package. Then we have to modify the TokenKind enumeration in TokenInfo.java file
+in order to let j-- know what is the symbol for division. And next we just go to
+Scanner class and modify the getNextToken() method to let the scanner to return
+the division token when it read a division symbol. Finally, we create an AST
+node class JDivideOp in JBinaryExpression.java, and let our parser involving the
+division operator. After finish these steps, j-- will know how to deal with
+division.
+
+For implementing remainder, the process is similar as division. First I write
+Remainder.java file which contains the class Remainder that just has one method
+rem(int x, int y). This method will take the two integer arguments and return
+the remainder of them, x % y. Then I write the a TestCase file
+RemainderTest.java which will use Remainder class to check does remainder
+operator work well on j--. Also I write the fail case. Because in our case, we
+assume the two arguments are integers, the fail case is similar as the one for
+division, just print out 'a' % 5 which will return a type error. After adding
+the RemainderTest into JMinusMinusTestRunner.java file, the test case part is
+done. The next step is let j-- compiler able to read and understand the
+remainder operator. So I first add symbol "%" into TokenKind enumeration in
+TokenInfo.java file and name it REM. And then, go to Scanner class and add a new
+case for switch() statement in getNextToken() method. The new case is case '%',
+it will read next character and return a new TokenInfo object with REM and line
+as argument. Because we don't have the operators such as %= or %%, there are
+just two statements in this case, nextCh() and return new TokenInfo
+object. Furthermore, I create an AST node class JRemainderOp in
+JBinaryExpression.java file. This class is same as JDivideOp except the argument
+for output.addNoArgInstruction() in codegen() method is IREM, I for integer and
+REM for remainder. Finally, I just modify the multiplicativeExpression() method
+in Parser class to make it return a new JRemainderOp object when it read a
+remainder symbol. After all, the remainder operator is working for j-- compiler.
+
+For implementing unary plus operator, it is different than the two operator
+which implemented before. The difference is unary plus has higher level
+precedence, and it just takes one argument, not two. As usually, I first write
+the test part. In the pass folder, I create a class UnaryAddition which just has
+one method unaryAddition(int x). This method will take one argument x and then
+return + + + x. Then I go junit folder and create a UnaryAdditionTest which will
+test the unary plus operator by using UnaryAddition class. The test is very
+easy, just put a integer to the unaryAddition() method, and test does the result
+equal the integer we put in or not. Also I need to create a fail case about
+unary plus operator. It is very similar as division and remainder, just print
+out +false, it will return a type error because we assume the operator works
+only for integers. After finishing the test part, the next step is let j--
+compiler able to read unary plus operator. In fact j-- compiler already know the
+unary plus operator because in the TokenKind enum, there is a PLUS("+") object
+here, and in getNextToken() method in Scanner class, there already has the case
+for "+" operator, we don't have to change anything about these two files, j--
+can read plus operator and return the TokenInfo object. So the next process is
+to let j-- compiler able to parse unary plus operator. Unlike division and
+remainder operator which are binary expression, unary plus operator is unary
+expression, so we have to create the AST node class in JUnaryExpression file,
+not JBinaryExpression file. In JUnaryExpression file, we can create the
+JAdditionOP class based on JNegateOp class because they are very similar. The
+only difference is the way to generate the code. Because the rule "+ + x" = "x",
+in the codegen() method, I just put one statement arg.codegen(output) which will
+let the method just generate the code for argument, nothing else. After this, we
+have a AST node class for unary plus operator, and then we have to let j--
+compiler able to use this class to parse unary plus operator. So in Parser
+class, I add a new if statement in unaryExpression() method, no longer in
+multiplicativeExpression() method. This if statement will let j-- compiler
+return a new JAdditionOp object when reach a PLUS operator. After all, the unary
+operator is working well for j-- compiler.
+
+Because it is first assignment, nothing hard for the coding. The biggest problem
+for me in this assignment is to set up the eclipse and using it. It is my first
+time using eclipse, so I need to set up the java development environment on my
+computer, such as add the JDK into the path and set up JAVA_HOME variable. These
+takes me some times. And when I use eclipse, at beginning I don't know I have to
+set src and test folders as source file. Because of it, when I build up my
+compiler, eclipse return a lot of errors about cannot find symbols or classes.
+Over all, this assignment really help to know how to use eclipse and gives me a
+briefly idea about how j-- compiler handle the operators.

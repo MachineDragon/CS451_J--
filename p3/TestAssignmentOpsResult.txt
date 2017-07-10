@@ -1,0 +1,69 @@
+C:\Users\Bowei>j-- -p "C:\Users\Bowei\Desktop\UMASS\CS 451\workspace\j--\TestAs
+ignmentOps.java"
+<?xml version="1.0" encoding="utf-8"?>
+<JCompilationUnit line="2">
+  <Source fileName="C:\Users\Bowei\Desktop\UMASS\CS 451\workspace\j--\TestAssig
+mentOps.java"/>
+  <Imports>
+  </Imports>
+  <TypeDeclarations>
+    <JClassDeclaration line="2" name="TestAssignmentOps" super="java.lang.Objec
+">
+      <Modifiers>
+      </Modifiers>
+      <ClassBlock>
+      <JMethodDeclaration line="3" name="f" returnType="void">
+        <Modifiers>
+          <Modifier name="public"/>
+        </Modifiers>
+        <FormalParameters>
+        </FormalParameters>
+        <Body>
+          <JBlock line="3">
+            <JStatementExpression line="4">
+              <JBinaryExpression line="4" type="" operator="-=">
+                <Lhs>
+                  <JVariable name="i"/>
+                </Lhs>
+                <Rhs>
+                  <JLiteralInt line="4" type="" value="3"/>
+                </Rhs>
+              </JBinaryExpression>
+            </JStatementExpression>
+            <JStatementExpression line="5">
+              <JBinaryExpression line="5" type="" operator="*=">
+                <Lhs>
+                  <JVariable name="y"/>
+                </Lhs>
+                <Rhs>
+                  <JLiteralInt line="5" type="" value="5"/>
+                </Rhs>
+              </JBinaryExpression>
+            </JStatementExpression>
+            <JStatementExpression line="6">
+              <JBinaryExpression line="6" type="" operator="/=">
+                <Lhs>
+                  <JVariable name="x"/>
+                </Lhs>
+                <Rhs>
+                  <JVariable name="i"/>
+                </Rhs>
+              </JBinaryExpression>
+            </JStatementExpression>
+            <JStatementExpression line="7">
+              <JBinaryExpression line="7" type="" operator="%=">
+                <Lhs>
+                  <JVariable name="g"/>
+                </Lhs>
+                <Rhs>
+                  <JVariable name="x"/>
+                </Rhs>
+              </JBinaryExpression>
+            </JStatementExpression>
+          </JBlock>
+        </Body>
+      </JMethodDeclaration>
+      </ClassBlock>
+    </JClassDeclaration>
+  </TypeDeclarations>
+</JCompilationUnit>

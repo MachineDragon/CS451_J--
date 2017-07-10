@@ -1,0 +1,43 @@
+C:\Users\Bowei>j-- -p "C:\Users\Bowei\Desktop\UMASS\CS 451\workspace\j--\TestPre
+fixAndPostfix.java"
+<?xml version="1.0" encoding="utf-8"?>
+<JCompilationUnit line="2">
+  <Source fileName="C:\Users\Bowei\Desktop\UMASS\CS 451\workspace\j--\TestPrefix
+AndPostfix.java"/>
+  <Imports>
+  </Imports>
+  <TypeDeclarations>
+    <JClassDeclaration line="2" name="TestPrefixAndPostfix" super="java.lang.Obj
+ect">
+      <Modifiers>
+      </Modifiers>
+      <ClassBlock>
+      <JMethodDeclaration line="3" name="f" returnType="void">
+        <Modifiers>
+          <Modifier name="public"/>
+        </Modifiers>
+        <FormalParameters>
+        </FormalParameters>
+        <Body>
+          <JBlock line="3">
+            <JStatementExpression line="4">
+              <JUnaryExpression line="4" type="" operator="post++">
+                <Operand>
+                  <JVariable name="i"/>
+                </Operand>
+              </JUnaryExpression>
+            </JStatementExpression>
+            <JStatementExpression line="5">
+              <JUnaryExpression line="5" type="" operator="--pre">
+                <Operand>
+                  <JVariable name="y"/>
+                </Operand>
+              </JUnaryExpression>
+            </JStatementExpression>
+          </JBlock>
+        </Body>
+      </JMethodDeclaration>
+      </ClassBlock>
+    </JClassDeclaration>
+  </TypeDeclarations>
+</JCompilationUnit>

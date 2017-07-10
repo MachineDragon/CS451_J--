@@ -1,0 +1,107 @@
+Bowei Li
+CS 451
+Assignment 2
+Narrative file
+
+Assignment 2 is not very hard for me. In this assignment, we are going to modify
+our j-- compiler to make it able to scan all java keywords and operators, and
+able to handle multi-line comments and double numbers. For all java keywords, it
+is very easy to implement. Just add all java keywords which is missed in
+TokenInfo.java file and then add these keywords into the reversed hashtable in
+Scanner.java file.
+
+It is not hard to implement all java operators too. Same as keywords, first we
+have to create token information for each operator in TokenInfo.java file. Then
+unlike implementing keywords, we need to modify the switch statement in
+Scanner.java file. There are two kinds of operator. First one is that the
+operator just stand for itself, not the prefix of other operators, such as ?, :,
+and ~. For these operators, we can just add new cases for them and return the
+TokenInfo object. The other kind of operator is that the operator is the prefix
+of other operator. The best example is the operator >. There are six operators
+which contains the symbol '>'-->, >=, >>, >>=, >>>, >>>=. So for this case, we
+will return the TokenInfo object depends on the characters sequence we read. If
+we read a simple character >, we have to read next character in order to
+determine which operator is that. If the next character is not a '=' or '>', we
+can say it is a great to operator. If the next character is a '=', we will say
+it is a great equal operator. But if the next character is a '>', then we have
+to see next character in order to make decision because there are still four
+operator which contains '>>'. So same as description before, if next character
+is not a '=' or '>', we say it is a right shift operator. If next character is a
+'=', we say it is a right shift assign operator. And for character '>', we will
+check next character again because still two operators have same prefix, >>> and
+>>>=. 
+
+For implementing multi-line comments, I use continue and break statement. The
+basic idea for multi-line comments is when we see '/' and '*', we will ignore
+every thing after, include new line operator, until we see '*' and '/'. So when
+we find a '/' is followed by '*', we will start a while loop. This loop will
+stop until get the end of file. In side of loop, we keep calling nextCh() to
+ignore every character except if current character is '*'. If we meet '*', we
+will call nextCh() to get the character which follow the '*'. If the next
+character is a '/', we call break to stop the loop. Otherwise, we call continue
+statement to do the loop from beginning without call nextCh(). The reason why I
+use continue statement is to handle some case that there are multiple stars
+before the close multi-line comments operator. For example, **/, we first read
+the star and then we will call nextCh() to get next character which is also a
+star. At this point, because '*' is not '/', compiler will think it is not end
+of comments. Compiler will call nextCh() to ignore the second star and to read
+the '/' character, which will not what we really want. So if we use continue
+here, when compiler read second star, it will not call nextCh() statement which
+is after the continue statement, compiler will goes to the starting point of
+loop which is to test current character is a star or not. Because the nextCh()
+is not called, the current character is the second star, and compiler will read
+next character to see is it a '/', and then break the loop if it is. Otherwise,
+compiler will call nextCh() to ignore the current star. And if the loop is not
+stopped by break statement, which mean the loop is stopped because the compiler
+gets an EOF character, then we will return an error about missing close
+multi-line comments operator.
+
+For implementing double numbers, according to the java language spec, there are
+four forms for double number:
+
+Digits . Digits(opt) ExponentPart(opt) FloatTypeSuffix(opt)
+. Digits ExponentPart(opt) FloatTypeSuffix(opt)
+Digits ExponentPart FloatTypeSuffix(opt)
+Digits ExponentPart(opt) FloatTypeSuffix
+
+So there are three place we have to modify, case 0, case 1~9, and case '.'. For
+case 1~9, I create three testers inside. The first tester is to check is current
+character a '.' or not, if it is, put '.' into the buffer and keep adding the
+number until get a non-digit character. The second tester is to check is current
+character a 'E' or 'e', which is exponent symbol. If it is, put current
+character into buffer and then check next character is a sign symbol or not. And
+then keep adding the digit until get a non-digit character. The last tester is
+to check current character a 'D' or 'd', which is double type suffix. If it is,
+just add to end of buffer, if not, skip the statements. The order of these three
+tester is important. We cannot change these three because according to the
+language spec, float type suffix must be after exponent symbol, and exponent
+symbol must be after dot. For example, 3.4e-3D is a valid double number, but
+3e-4.4D is not. And for case '.', it is very similar to case 1~9. We don't need
+the first tester because this case is starting by '.'. And everything else is
+same.
+
+There is difference between double and integer number. For double, we can start
+with multiple zeros, for example, 0000.0001 or 00001. or 00001D is a valid
+double number, but 000001 or 001 is not a valid integer. So for case 0, I create
+a if statement to check if there is a number start by zero and is not a double,
+report an error. And every else is same as case 1~9.
+
+I use a non-smart way to handle the underscore problem for integer and double
+numbers. What I do is to set up a variable which contains the previous character
+we read. Because the underscore is only used between digit and digit. So every
+time we end our scan with a non-digit character, we just check if the previous
+character is a underscore or not. If it is, return the error; otherwise, keep
+scanning. For example, for integer 11231_234_ , it is not a valid integer. The
+scanner will return a token when it after reading the second underscore because
+scanner get a white space. Before scanner returns, we check the previous
+character which is a underscore, we can say it is a non-valid number because the
+underscore is not between two digits. It also works for double. For example, the
+double number 123_e34, in my program, the scanner will check the previous
+character when it read 'e' which is an exponent indicator. If the previous
+character is a underscore, it will return error; otherwise, my program will go
+to scan the signed integer after the exponent indicator.
+
+In my opinion, it is not a beautiful way to handle the underscore problem
+because in my codes, there are a lot of if statements to check the previous
+character. I think there must be a better way to handle it, but I didn't get it
+yet.

@@ -1,0 +1,75 @@
+C:\Users\Bowei>javaccj-- -p "C:\Users\Bowei\Desktop\UMASS\CS 451\p4\TestFor.java
+"
+<?xml version="1.0" encoding="utf-8"?>
+<JCompilationUnit line="1">
+  <Source fileName="C:\Users\Bowei\Desktop\UMASS\CS 451\p4\TestFor.java"/>
+  <Imports>
+  </Imports>
+  <TypeDeclarations>
+    <JClassDeclaration line="1" name="TestFor" super="java.lang.Object">
+      <Modifiers>
+      </Modifiers>
+      <ClassBlock>
+      <JMethodDeclaration line="2" name="f" returnType="void">
+        <Modifiers>
+          <Modifier name="public"/>
+        </Modifiers>
+        <FormalParameters>
+        </FormalParameters>
+        <Body>
+          <JBlock line="2">
+            <JForLoopStatement line="3">
+              <ForInits>
+                  <JForLoopVariableDeclaration>
+                    <VariableDeclarators>
+                      <JVariableDeclarator line="3" name="i" type="int">
+                        <Initializer>
+                          <JLiteralInt line="3" type="" value="3"/>
+                        </Initializer>
+                      </JVariableDeclarator>
+                    </VariableDeclarators>
+                  </JForLoopVariableDeclaration>
+              </ForInits>
+              <ForLoopExpression>
+                <JBinaryExpression line="3" type="" operator="&lt;=">
+                  <Lhs>
+                    <JVariable name="i"/>
+                  </Lhs>
+                  <Rhs>
+                    <JLiteralInt line="3" type="" value="3"/>
+                  </Rhs>
+                </JBinaryExpression>
+              </ForLoopExpression>
+              <ForUpdate>
+                  <JStatementExpression line="3">
+                    <JUnaryExpression line="3" type="" operator="post--">
+                      <Operand>
+                        <JVariable name="i"/>
+                      </Operand>
+                    </JUnaryExpression>
+                  </JStatementExpression>
+              </ForUpdate>
+              <LoopStatement>
+                <JBlock line="3">
+                </JBlock>
+              </LoopStatement>
+            </JForLoopStatement>
+            <JEnhanceForLoopStatement line="4">
+              <TheFormalParameter>
+                <JFormalParameter line="4" name="x" type="int"/>
+              </TheFormalParameter>
+              <TheExpression>
+                <JVariable name="y"/>
+              </TheExpression>
+              <LoopStatement>
+                <JBlock line="4">
+                </JBlock>
+              </LoopStatement>
+            </JEnhanceForLoopStatement>
+          </JBlock>
+        </Body>
+      </JMethodDeclaration>
+      </ClassBlock>
+    </JClassDeclaration>
+  </TypeDeclarations>
+</JCompilationUnit>

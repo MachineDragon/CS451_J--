@@ -1,0 +1,49 @@
+C:\Users\Bowei>j-- -p "C:\Users\Bowei\Desktop\UMASS\CS 451\workspace\j--\TestCon
+ditionalExpression.java"
+<?xml version="1.0" encoding="utf-8"?>
+<JCompilationUnit line="2">
+  <Source fileName="C:\Users\Bowei\Desktop\UMASS\CS 451\workspace\j--\TestCondit
+ionalExpression.java"/>
+  <Imports>
+  </Imports>
+  <TypeDeclarations>
+    <JClassDeclaration line="2" name="TestConditionalExpression" super="java.lan
+g.Object">
+      <Modifiers>
+      </Modifiers>
+      <ClassBlock>
+      <JMethodDeclaration line="3" name="f" returnType="void">
+        <Modifiers>
+          <Modifier name="public"/>
+        </Modifiers>
+        <FormalParameters>
+        </FormalParameters>
+        <Body>
+          <JBlock line="3">
+            <JStatementExpression line="4">
+              <JBinaryExpression line="4" type="" operator="=">
+                <Lhs>
+                  <JVariable name="i"/>
+                </Lhs>
+                <Rhs>
+                  <JConditionalExpression line="4" type="" operator="? :">
+                    <Condition>
+                      <JLiteralTrue line="4" type=""/>
+                    </Condition>
+                    <FirstExpression>
+                      <JLiteralInt line="4" type="" value="1"/>
+                    </FirstExpression>
+                    <SecondExpression>
+                      <JLiteralInt line="4" type="" value="2"/>
+                    </SecondExpression>
+                  </JConditionalExpression>
+                </Rhs>
+              </JBinaryExpression>
+            </JStatementExpression>
+          </JBlock>
+        </Body>
+      </JMethodDeclaration>
+      </ClassBlock>
+    </JClassDeclaration>
+  </TypeDeclarations>
+</JCompilationUnit>

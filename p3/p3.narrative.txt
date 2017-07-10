@@ -1,0 +1,73 @@
+Bowei Li
+CS 451
+Assignment 3
+Narrative file
+
+Unlike the previous two assignments, this assignment requires a lot of
+works. And some parts in the assignment are tricky.
+
+For implementing the double literal, it is very easy. I just add some codes into
+literal() and basicType() methods, and create a JLiteralDouble class for the
+literal() method. But there is a mistake I find when I test my codes. The
+mistake is that I forget to modify the seeBasicType() and seeReferenceType()
+method. These two are type checker methods. They cannot handle double type
+before I modify them. This mistake makes my code to report an error when I try
+to create a local double type variable because the seeLocalVariableDeclaration()
+method is using seeBasicType().
+
+To implement logical or operator, it requires lot works. According to the Java
+Syntax rule, conditionalOrExpression ::= conditionalAndExpression {||
+conditionalAndExpression}.  In each conditional or expression, there is one or
+more conditional and expression connected by operator "||". So I create
+conditionalOrExpression() method in Parser. It will read first conditional and
+expression, if there is no logical or operator, just return the conditional and
+expression. Otherwise, just keep reading the follow conditional and expression
+and return a new JLogicalOrOp object. All the steps are similar as what
+conditionalAndExpression() method does.
+
+For the assignment operators, I first create correspond J-class for each
+operators by extending JAssignment class. Then just add some if statements in
+assignmentExpression() method to handle all the operators. Similar for prefix --
+and postfix ++, first create the correspond J-class by extending
+JUnaryExpression class. But prefix operator and postfix operator is parsed in
+different place. For prefix -- operator, it is easy. I just add an if statement
+in unaryExpression() method to return a JPreDecrementOp object if there is a DEC
+token. For postfix ++ operator, I need to modify the postfixExpression() method
+in order to handle it. At end, because both prefix -- and postfix ++ operators
+have side-effect, I just add two instanceof expressions into statementExpression
+method to make them have side-effect.
+
+It is not hard to implement conditional expression. As usual, I first create the
+JConditionalExpression class which extends JExpression class. Then in the Parser
+class, I create a method called conditionalExpression(). According to the syntax
+grammar,
+ conditionalExpression ::= conditionalOrExpression 
+                         [? assignmentExpression : conditionalExpression]
+So in the conditionalExpression() method, it will first call
+conditionalOrExpression() method to get the first conditional or expression, and
+then to see is there a question token. If not, just return the conditional or
+expression. Otherwise, assignmentExpression() method will be called and check
+the colon token is there, then call conditionalExpression to get the
+conditional expression and return a new JConditionalExpression object which
+created by these three arguments. After it, the assignmentExpression is no
+longer equals to conditionalAndExpression. It must change to be
+conditionalExpression. So I change the codes in the assignmentExpression()
+method. So the new grammar will be
+assignmentExpression ::= conditionalExpression 
+                           [(=|+=) assignmentExpression].
+
+Implementing the static and instance block is a little bit tricky. I create a
+J-class called JStaticInstanceBlock to represent static or instance block. If it
+is a static block, I just pass a true value to constructor which will says it is
+a static block. If it is a instance block, then just pass a false value to
+constructor. It is not hard for instance block. If we see a left curly bracket
+in the classBody, we can just call block() method to read the block and create a
+JStaticInstanceBlock object with a false value and the block we just have. But
+for static block, we must to check does a left curly bracket follows the static
+token. If does, it will be a static block. Otherwise, it will be modifiers
+memberDecl. In order to handle this, I use scanner.recordPosition() and
+scanner.returnToPosition() methods. First we record the current position, if
+there is a static, we read it, and then go check does a left curly bracket after
+the static token. If does, we call block() method to read the block and then
+create a JStaticInstanceBlock object with a true value and the block we just
+read. Otherwise, we return to the position, and skip the static block process.

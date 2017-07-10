@@ -1,0 +1,159 @@
+C:\Users\Bowei>j-- -s graph -r 4 "C:\Users\Bowei\Desktop\UMASS\CS 451\workspace\
+j--\Test.java"
+<init> ()V
+  ========== TUPLES ==========
+
+  B0
+
+  B1
+  0: aload_0
+  1: invokespecial   0   8
+  4: return
+
+  ========== HIR ==========
+
+  B0 succ: B1
+  Locals:
+
+  B1 [0, 4] dom: B0 pred: B0
+  Locals:
+  V1: invokespecial java/lang/Object.<init>( )
+  2: return
+
+  ========== LIR ==========
+
+  B0
+
+  B1
+  0: INVOKESPECIAL java/lang/Object.<init>( )
+  5: RETURN
+
+  ========== INTERVALS ==========
+
+
+  ========== LIR ==========
+
+  B0
+
+  B1
+  0: INVOKESPECIAL java/lang/Object.<init>( )
+  5: RETURN
+
+computeIter (I)I
+  ========== TUPLES ==========
+
+  B0
+
+  B1
+  0: iconst_1
+  1: istore_1
+
+  B2
+  2: iload_0
+  3: iconst_0
+  4: if_icmple   0   13
+
+  B3
+  7: iload_1
+  8: iload_0
+  9: iinc   0   255
+  12: imul
+  13: istore_1
+  14: goto   255   244
+
+  B4
+  17: iload_1
+  18: ireturn
+
+  ========== HIR ==========
+
+  B0 succ: B1
+  Locals: I0
+  I0: LDLOC 0
+
+  B1 [0, 1] dom: B0 pred: B0  succ: B2
+  Locals: I0 I2
+  I2: 1
+
+  B2 [LH] [2, 4] dom: B1 pred: B1 B3  succ: B3 B4
+  Locals: I3 I4
+  I3: [ I0 I8 ]
+  I4: [ I2 I9 ]
+  I5: 0
+  6: if I3 <= I5 then B4 else B3
+
+  B3 [LT] [7, 14] dom: B2 pred: B2  succ: B2
+  Locals: I8 I9
+  I7: -1
+  I8: I3 + I7
+  I9: I4 * I3
+  10: goto B2
+
+  B4 [17, 18] dom: B2 pred: B2
+  Locals: I3 I4
+  I11: ireturn I4
+
+  ========== LIR ==========
+
+  B0
+
+  B1
+  0: LDC [1] [V32|I]
+  5: MOVE $a0 [V33|I]
+  10: MOVE [V32|I] [V34|I]
+
+  B2
+  15: LDC [0] [V35|I]
+  20: BRANCH [LE] [V33|I] [V35|I] B4
+
+  B3
+  25: LDC [-1] [V36|I]
+  30: ADD [V33|I] [V36|I] [V37|I]
+  35: MUL [V34|I] [V33|I] [V38|I]
+  40: MOVE [V38|I] [V34|I]
+  45: MOVE [V37|I] [V33|I]
+  50: BRANCH B2
+
+  B4
+  55: MOVE [V34|I] $v0
+  60: RETURN $v0
+
+  ========== INTERVALS ==========
+
+  v0: [55, 60] -> v0
+  a0: [0, 5] -> a0
+  V32: [0, 10] -> t0
+  V33: [5, 35] [45, 50] -> t2
+  V34: [10, 55] -> t1
+  V35: [15, 20] -> t0
+  V36: [25, 30] -> t0
+  V37: [30, 45] -> t3
+  V38: [35, 40] -> t0
+
+  ========== LIR ==========
+
+  B0
+
+  B1
+  0: LDC [1] $t0
+  5: MOVE $a0 $t2
+  10: MOVE $t0 $t1
+
+  B2
+  15: LDC [0] $t0
+  20: BRANCH [LE] $t2 $t0 B4
+
+  B3
+  25: LDC [-1] $t0
+  30: ADD $t2 $t0 $t3
+  35: MUL $t1 $t2 $t0
+  40: MOVE $t0 $t1
+  45: MOVE $t3 $t2
+  50: BRANCH B2
+
+  B4
+  55: MOVE $t1 $v0
+  60: RETURN $v0
+
+File "C:\Users\Bowei\Desktop\UMASS\CS 451\workspace\j--\bin\\..\"\src\spim\SPIM.
+s not found

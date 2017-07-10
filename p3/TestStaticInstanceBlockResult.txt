@@ -1,0 +1,26 @@
+C:\Users\Bowei>j-- -p "C:\Users\Bowei\Desktop\UMASS\CS 451\workspace\j--\TestSta
+ticInstanceBlock.java"
+<?xml version="1.0" encoding="utf-8"?>
+<JCompilationUnit line="2">
+  <Source fileName="C:\Users\Bowei\Desktop\UMASS\CS 451\workspace\j--\TestStatic
+InstanceBlock.java"/>
+  <Imports>
+  </Imports>
+  <TypeDeclarations>
+    <JClassDeclaration line="2" name="TestStaticInstanceBlock" super="java.lang.
+Object">
+      <Modifiers>
+      </Modifiers>
+      <ClassBlock>
+      <JStaticBlock line="4">
+        <JBlock line="4">
+        </JBlock>
+      </JStaticBlock>
+      <JInstanceBlock line="6">
+        <JBlock line="6">
+        </JBlock>
+      </JInstanceBlock>
+      </ClassBlock>
+    </JClassDeclaration>
+  </TypeDeclarations>
+</JCompilationUnit>

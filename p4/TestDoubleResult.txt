@@ -1,0 +1,49 @@
+C:\Users\Bowei>javaccj-- -p "C:\Users\Bowei\Desktop\UMASS\CS 451\p4\TestDouble.j
+ava"
+<?xml version="1.0" encoding="utf-8"?>
+<JCompilationUnit line="1">
+  <Source fileName="C:\Users\Bowei\Desktop\UMASS\CS 451\p4\TestDouble.java"/>
+  <Imports>
+  </Imports>
+  <TypeDeclarations>
+    <JClassDeclaration line="1" name="TestDouble" super="java.lang.Object">
+      <Modifiers>
+      </Modifiers>
+      <ClassBlock>
+      <JFieldDeclaration line="2"/>
+        <Modifiers>
+        </Modifiers>
+        <VariableDeclarators>
+          <JVariableDeclarator line="2" name="i" type="double">
+            <Initializer>
+              <JLiteralDouble line="2" type="" value="3.2"/>
+            </Initializer>
+          </JVariableDeclarator>
+        <VariableDeclarators>
+      </JFieldDeclaration>
+      <JMethodDeclaration line="3" name="f" returnType="void">
+        <Modifiers>
+          <Modifier name="public"/>
+        </Modifiers>
+        <FormalParameters>
+        </FormalParameters>
+        <Body>
+          <JBlock line="3">
+            <JVariableDeclaration>
+              <Modifiers>
+              </Modifiers>
+              <VariableDeclarators>
+                <JVariableDeclarator line="4" name="x" type="double">
+                  <Initializer>
+                    <JLiteralDouble line="4" type="" value="2.3"/>
+                  </Initializer>
+                </JVariableDeclarator>
+              </VariableDeclarators>
+            </JVariableDeclaration>
+          </JBlock>
+        </Body>
+      </JMethodDeclaration>
+      </ClassBlock>
+    </JClassDeclaration>
+  </TypeDeclarations>
+</JCompilationUnit>

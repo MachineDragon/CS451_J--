@@ -1,0 +1,17 @@
+C:\Users\Bowei>javaccj-- -p "C:\Users\Bowei\Desktop\UMASS\CS 451\p4\TestInterfac
+e.java"
+<?xml version="1.0" encoding="utf-8"?>
+<JCompilationUnit line="2">
+  <Source fileName="C:\Users\Bowei\Desktop\UMASS\CS 451\p4\TestInterface.java"/>
+
+  <Imports>
+  </Imports>
+  <TypeDeclarations>
+    <JInterfaceDeclaration line="2" name="TestInterface">
+      <Modifiers>
+      </Modifiers>
+      <InterfaceBlock>
+      </InterfaceBlock>
+    </JInterfaceDeclaration>
+  </TypeDeclarations>
+</JCompilationUnit>

@@ -1,0 +1,44 @@
+C:\Users\Bowei>j-- -p "C:\Users\Bowei\Desktop\UMASS\CS 451\workspace\j--\TestLog
+icalOr.java"
+<?xml version="1.0" encoding="utf-8"?>
+<JCompilationUnit line="2">
+  <Source fileName="C:\Users\Bowei\Desktop\UMASS\CS 451\workspace\j--\TestLogica
+lOr.java"/>
+  <Imports>
+  </Imports>
+  <TypeDeclarations>
+    <JClassDeclaration line="2" name="TestLogicalOr" super="java.lang.Object">
+      <Modifiers>
+      </Modifiers>
+      <ClassBlock>
+      <JMethodDeclaration line="3" name="f" returnType="void">
+        <Modifiers>
+          <Modifier name="public"/>
+        </Modifiers>
+        <FormalParameters>
+        </FormalParameters>
+        <Body>
+          <JBlock line="3">
+            <JIfStatement line="4">
+              <TestExpression>
+                <JBinaryExpression line="4" type="" operator="||">
+                  <Lhs>
+                    <JLiteralTrue line="4" type=""/>
+                  </Lhs>
+                  <Rhs>
+                    <JLiteralFalse line="4" type=""/>
+                  </Rhs>
+                </JBinaryExpression>
+              </TestExpression>
+              <ThenClause>
+                <JBlock line="4">
+                </JBlock>
+              </ThenClause>
+            </JIfStatement>
+          </JBlock>
+        </Body>
+      </JMethodDeclaration>
+      </ClassBlock>
+    </JClassDeclaration>
+  </TypeDeclarations>
+</JCompilationUnit>

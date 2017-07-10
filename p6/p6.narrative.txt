@@ -1,0 +1,29 @@
+Bowei Li
+CS 451
+Assignment 6
+Narrative file
+
+In my opinion, this assignment is not very hard. I use a two dimensional boolean
+array to represent the adjacency matrix, and an arrayList of an arraylist to
+represent adjacency list. So in my NGraphRegisterAllocator, there are two files,
+one is boolean[][] adjMatrix and other one is ArrayList<ArrayList<NInterval>>
+adjList. I also create a Stack<Ninterval> variable called track and an integer
+variable called degree to help me doing graph allocation.
+
+I first create a method call isInterference() to check if two NInterval is
+interference. This method will go over every Nrange in one NInterval, call
+isLiveAt() method to see if they are both alive.
+
+Then I use isInterference() to help me create the adjacency matrix. It is very
+easy, we can call isInterference() with two intervals, and assign the return
+boolean value to the adjMatrix table. After finish creating the adjacency
+matrix, I use it to create a adjacency list in buildAdjacencyList() method which
+also is a helper method. I use the id of register as the index, and the
+ArrayList at this index is the list of all registers that have connection with
+the register. The reason why I create the adjacency list is because it is easy
+to check the degree of one register, we can treat the size of the ArrayList as
+the degree of the register. Then I create pruneGraph() method to remove nodes
+from graph. When one node is removed, it has to be removed from every list in
+the adjacency list. The removed node will push onto stack. Once we finish the
+removing, we pop out the node from stack and assign the physical register to it
+until the stack is empty.

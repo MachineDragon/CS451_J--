@@ -1,0 +1,72 @@
+Bowei Li
+CS 451
+Assignment 4
+Narrative file
+
+This assignment is very interesting. In this assignment, we are going to modify
+the j--.jj file in order to create the parser and scanner classes by program.
+
+I do the double literals and double basic type question first because it seems
+like easiest one of the three. First of all, I add the DOUBLE token into the
+reserved words list. Then I go to basicType() method to add one statement
+<DOUBLE> { type = Type.DOUBLE; }. After it, the parser that create by JavaCC
+will able to handle the double basic type. And the double literal is not hard. I
+go to the literals token list to add double literal token. According to the Java
+Specification, there are four ways to represent double literal, so there are
+four parts in my double literal token.
+< DOUBLE_LITERAL: 
+	((<DIGIT>)+ "." (<DIGIT>)* (<ExponentPart>)? (["d","D"])?
+	| "." (<DIGIT>)+ (<ExponentPart>)? (["d","D"])?
+	| (<DIGIT>)+ <ExponentPart> (["d","D"])?
+	| (<DIGIT>)+ (<ExponentPart>)? ["d","D"])
+ 	>
+ExponentPart is a helped identifiers I write for double literal. Its definition
+is < #ExponentPart: ["e","E"] (["+","-"])? (<DIGIT>)+ >.
+
+At beginning, I think I can combine first two ways by using the expression 
+(<DIGIT>)* "." (<DIGIT>)* (<ExponentPart>)? (["d","D"])?. But then I find that
+expression will accept .e3 which is not a double literal. So finally I write
+them separately. 
+
+Then I do the interface part. This part requires us to write few methods in
+j--.jj file. The three methods we gonna to write are interfaceBody(),
+interfaceMemberDecl(), and interfaceDeclaration(). All three methods are easy to
+write because we can use the corresponding class member methods to help the
+writing. Finally I just go to typeDeclaration() method to add a LOOKAHEAD which
+will determine to use classDeclaration or interfaceDeclaration. This part of
+assignment also let me get a clear idea about the use of LOOKAHEAD which
+actually just like the if-else statement.
+
+For the classic and enhanced if statements, I first write the classic statement,
+then modify the codes in order to handle the enhanced statement. As we did in
+assignment 3, I first write two help methods, forInit() and forUpdate(). Because
+of the experience of writing three interface helped methods before, these two
+methods are not big problem for me. Then I go to the statement() method and add
+the <FOR> part for the for loop statement. It is not hard too, just make sure
+which token you need to check. Then I modify the codes to let it able to handle
+the enhanced if statement. For this case, I need to use LOOKAHEAD. The code is 
+LOOKAHEAD( (type()) <IDENTIFIER> (<LBRACK> <RBRACK>)* <COLON>)
+This LOOKAHEAD code will help me to check does a colon follow a
+formalParameter. If does, I will collect needed information and then set
+statement to be JEnhancedForStatement object. Otherwise, just go the process for
+the classic if statement.
+
+Overall, assignment 4 is not very hard. In fact, this assignment is very
+interesting. I do open the JavaCCParser.java file to see the codes that JavaCC
+created. Some codes and variables are readable and reasonable, but most
+variables are hard to figure out because the name JavaCC uses are just some
+letters and digits such as jj_la1[] or jj_gen. And some codes JavaCC creates are
+funny, such as the return statement at end of compilationUnit() method
+{if (true) return new JCompilationUnit( fileName, line,
+            packageName, imports, typeDeclarations );}
+    throw new Error("Missing return statement in function");
+if (true) return XXX really means return XXX, why just add a useless if
+statement at front!
+
+Actually, I think it will be good strategy if do the assignment from the
+third question to the first question. The third question give us the experience
+about adding and modifying tokens. The second question give use the experience
+about writing method for JavaCC by looking some methods which already in the
+fill. Then the first question will let us write our own methods and use
+these. So maybe it is a good idea to reverse the order of question next time, I
+think it will help some students.

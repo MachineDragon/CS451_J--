@@ -1,0 +1,91 @@
+C:\Users\Bowei>j-- -p "C:\Users\Bowei\Desktop\UMASS\CS 451\workspace\j--\TestSwi
+tch.java"
+<?xml version="1.0" encoding="utf-8"?>
+<JCompilationUnit line="2">
+  <Source fileName="C:\Users\Bowei\Desktop\UMASS\CS 451\workspace\j--\TestSwitch
+.java"/>
+  <Imports>
+  </Imports>
+  <TypeDeclarations>
+    <JClassDeclaration line="2" name="TestSwitch" super="java.lang.Object">
+      <Modifiers>
+      </Modifiers>
+      <ClassBlock>
+      <JMethodDeclaration line="3" name="f" returnType="void">
+        <Modifiers>
+          <Modifier name="public"/>
+        </Modifiers>
+        <FormalParameters>
+        </FormalParameters>
+        <Body>
+          <JBlock line="3">
+            <JSwitchStatement line="4">
+              <TheParExpression>
+                <JVariable name="c"/>
+              </TheParExpression>
+              <TheSwitchBlockStatementGroup>
+                <JSwitchBlockStatement line="5">
+                  <TheCase>
+                    <JLiteralString line="5" type="" value="&quot;1&quot;"/>
+                  </TheCase>
+                  <TheCase>
+                    <JLiteralString line="6" type="" value="&quot;2&quot;"/>
+                  </TheCase>
+                  <TheBlockStatement>
+                    <JVariableDeclaration>
+                      <Modifiers>
+                      </Modifiers>
+                      <VariableDeclarators>
+                        <JVariableDeclarator line="6" name="i" type="int">
+                          <Initializer>
+                            <JLiteralInt line="6" type="" value="2"/>
+                          </Initializer>
+                        </JVariableDeclarator>
+                      </VariableDeclarators>
+                    </JVariableDeclaration>
+                  </TheBlockStatement>
+                </JSwitchBlockStatement>
+                <JSwitchBlockStatement line="7">
+                  <TheCase>
+                    <JLiteralString line="7" type="" value="&quot;3&quot;"/>
+                  </TheCase>
+                  <TheBlockStatement>
+                    <JVariableDeclaration>
+                      <Modifiers>
+                      </Modifiers>
+                      <VariableDeclarators>
+                        <JVariableDeclarator line="7" name="x" type="int">
+                          <Initializer>
+                            <JLiteralInt line="7" type="" value="4"/>
+                          </Initializer>
+                        </JVariableDeclarator>
+                      </VariableDeclarators>
+                    </JVariableDeclaration>
+                  </TheBlockStatement>
+                </JSwitchBlockStatement>
+                <JSwitchBlockStatement line="8">
+                  <TheDefault>
+                  </TheDefault>
+                  <TheBlockStatement>
+                    <JVariableDeclaration>
+                      <Modifiers>
+                      </Modifiers>
+                      <VariableDeclarators>
+                        <JVariableDeclarator line="8" name="y" type="int">
+                          <Initializer>
+                            <JLiteralInt line="8" type="" value="3"/>
+                          </Initializer>
+                        </JVariableDeclarator>
+                      </VariableDeclarators>
+                    </JVariableDeclaration>
+                  </TheBlockStatement>
+                </JSwitchBlockStatement>
+              </TheSwitchBlockStatementGroup>
+            </JSwitchStatement>
+          </JBlock>
+        </Body>
+      </JMethodDeclaration>
+      </ClassBlock>
+    </JClassDeclaration>
+  </TypeDeclarations>
+</JCompilationUnit>

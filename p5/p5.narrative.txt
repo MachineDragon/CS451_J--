@@ -1,0 +1,89 @@
+Bowei Li
+CS 451
+Assignment 5
+Narrative file
+
+For the double part, it is nor hard. The first thing is to write code in
+JLiteralDouble class. The codes are very similar with JLiteralInt. For
+analyze(), there is just a single statement type = Type.DOUBLE and then
+return. And for codegen(), we first check is the double number equals 0d or
+1d. If yes, we can just us DCONST_0 or DCONST_1. Otherwise, we call
+addLDCInstruction() method with the double number. After it, I modify all
+classes in JBinaryExpression. It is not hard, just add a condition into
+analyze() and codegen() methods. For analyze(), if the lhs is a double value, we
+need to check is rhs a double value, and then let the type of the object to be
+Type.DOUBLE. And then for codegen(), if we see the type of the object is double,
+we will use the instruction for double number such as DADD, DSUB, DMUL, or
+DDIV. I also modify JArrayInitializer and JArrayExpression classes, if the type
+is Double, they will use DASTORE or DALOAD for store or load a double array.
+
+We also need to modify JVariable and JVariableDeclaration classes. For
+JVariable, it is similar with array classes, just use DSTORE or DLOAD if the
+type is double. But it is a little bit hard for JVariableDeclaration. We have to
+work with offset in this class. For double variable, we need 2 offset instance
+of 1 offset. The way I handle this problem is to add a overload method
+nextOffset(int i) into Context class. This class will return this current offset
+and then increase the offset by i. So for the analyze() in JVariableDeclaration,
+if the type is double, the offset will be the value return from nextOffset(2).
+
+Casting and Boxing is not hard too. First thing is to add BOXED_DOUBLE value
+into Type file. Then in the JCastOp file, we just modify the HashTable for
+casting in order to let j-- handle the double type casting. I create three
+methods called I2D, D2I, and D2C. So when we try to cast an integer to double,
+we will use I2D() method which will use I2D instruction to change a int to
+double. And if we want to cast a double to int, we will use D2I() method which
+will use D2I instruction. And for the casting between char and double, because
+char value can be treated as int, so we can just use I2D or D2I instruction for
+casting between char and double. Boxing and Un-boxing is simple, just put
+BOX_DOUBLE with Type.DOUBLE into the table.  
+
+For the logical or operator, the analyze part is same with logical and
+operator's. For the codegen part, it is totally a reverse of logical and. So the
+codes are pretty similar with logical and operator's except the conditions for
+jumping are reversed. And for the -= operator, it is pretty similar with
+PlusAssign operator. The analyze part is same, and the codegen part, first read
+the Lvalue and Rvalue of lhs, then load rhs, do the ISUB or DSUB which depends
+on the type, and finally call codegenStore() to save into the location of
+lhs. Also, for the postfix++ and prefix--, we can code them depend on postfix--
+and prefix++. Only thing we need change is the instruction, such as change IADD
+to ISUB.
+
+For the conditional expression, we can think it as a if statement. There are
+three parts in conditional expression class, condition is same as if statement's
+condition, the firstExpression we can think it as the thenPart in if statement,
+and the secondExpression we can think it as the elsePart. So the analyze part is
+pretty similar with if statement, we call the analyze() method for three parts,
+and then check the type of them, the condition's type must match Type.BOOLEAN,
+and the type of firstExpression must be same as secondExpression. For the
+codegen part, same as if, we first create two labels called secondLabel and
+endLabel. Then we call the codegen() method in condition part with secondLabel
+and false value as argument. It means if the condition is a false condition,
+jump to the second expression, otherwise, the first expression will in
+charge. Then we add a GOTO instruction after the calling of codegen of
+firstExpression in order to jump to endLabel after finishing the work of first
+expression.
+
+For the for statement, we can treat it as a while loop. In the codegen, we first
+call the codegen() method for forInit part which will do the variable
+declaration for the for statement. Then we create two labels called test and
+out. We call codegen() method for expression part with label out and false value
+which mean if the expression is false, jump to out label. Then we call codegen()
+method for statement part and update part, and after it, we add a GOTO
+instruction for jumping to the test label to do the test again.
+
+The enhance for statement is not easy. In order to handle this, I create three
+JVariable object inside JEnhanceForStatement file. One will take care of the
+array, one will take care of the counter, and final one will take care of the
+element in the array. In the analyze() method, I create a
+ArrayList<JVariableDeclarator> object to declare these three variable into the
+context. And then in the codegen() method, I first creat two labels called test
+and out. Then I get the counter and the arraylength, and use IF_ICMPGE
+instruction to compare them. If two values are same, jump to end. If not, then
+get the LValue of the JVariable which takes carry of the array and the value of
+the JVariable which takes carry of the counter, and use IALOAD or DALOAD to get
+the value from array, and use codegenStore of the JVariable which takes carry of
+the elements in the array to assign the value. Then we call codegen() method of
+the statement variable to do the statement. And at end, we increase  the value
+in the counter, and use GOTO instruction to jump to the test label to do the
+compare again.
+
